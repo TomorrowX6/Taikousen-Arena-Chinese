@@ -351,7 +351,7 @@ def main():
 
     orig, target = files[BUNDLE]
     patch_bundle(orig, target)
-    log("完成！启动游戏后，在设置中选择「日本語」（现显示为简体中文）即可。")
+    log("完成！直接启动游戏即可。（汉化替换的是日语栏位；如果之前在游戏里切换成了韩语，请切回「日本語」。）")
 
 
 if __name__ == "__main__":

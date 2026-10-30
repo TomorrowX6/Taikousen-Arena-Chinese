@@ -1,0 +1,39 @@
+name: Build patcher
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  windows-exe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pyinstaller==6.11.1
+
+      - name: Build exe
+        run: >
+          pyinstaller --noconfirm --onefile --name TaikousenArena-zh-patch
+          --collect-all UnityPy
+          --add-data "translation;translation"
+          --add-data "fonts;fonts"
+          --add-data "tools;tools"
+          patch.py
+
+      - name: Package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release | Out-Null
+          Copy-Item dist/TaikousenArena-zh-patch.exe release/
+          Copy-Item README.md, fonts/OFL.txt release/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TaikousenArena-zh-patch
+          path: release/

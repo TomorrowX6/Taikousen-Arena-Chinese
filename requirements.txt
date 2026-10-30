@@ -1,1 +1,2 @@
 UnityPy==1.25.4
+numpy

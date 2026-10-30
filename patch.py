@@ -6,7 +6,7 @@
     python patch.py [游戏目录] --restore 还原为原版文件
 
 补丁会修改以下三个文件，首次运行时自动备份为 *.orig：
-    Taikousen Arena_Data/data.unity3d                         文本、字体、界面文字
+    Taikousen Arena_Data/data.unity3d                         文本、字体、界面文字和按钮图片
     GameAssembly.dll                                          改为读取内置翻译表（不再从官方服务器下载日文表）
     Taikousen Arena_Data/il2cpp_data/Metadata/global-metadata.dat   代码中的少量提示文字
 """
@@ -197,10 +197,13 @@ def patch_bundle(src, dst, verbose=True):
     log("读取 data.unity3d ...")
     b = Bundle(src)
     seen_csv, seen_fonts, seen_assets, ui_hits = set(), set(), set(), {}
+    textures = {}
 
     for obj in b.env.objects:
         kind = obj.type.name
-        if kind == "TextAsset":
+        if kind == "Texture2D":
+            textures.setdefault(obj.peek_name(), []).append(obj)
+        elif kind == "TextAsset":
             data = obj.read()
             if data.m_Name in csv_tr:
                 text, n = translate_csv(data.m_Script, csv_tr[data.m_Name])
@@ -245,12 +248,39 @@ def patch_bundle(src, dst, verbose=True):
             if k not in ui_hits:
                 log("    未找到：%r" % k)
 
+    patch_images(textures)
+
     log("写入 data.unity3d（压缩需要一两分钟）...")
     out = b.bundle.save(packer="original")
     tmp = dst + ".tmp"
     with open(tmp, "wb") as f:
         f.write(out)
     os.replace(tmp, dst)
+
+
+def patch_images(textures):
+    """Redraw the Japanese labels baked into UI textures (see tools/ui_images.py)."""
+    from ui_images import relabel
+
+    specs = load_json("translation", "images.zh.json")
+    font = res("fonts", "NotoSansCJKsc-Bold-subset.otf")
+    done, failed = 0, []
+    for name, spec in specs.items():
+        twins = textures.get(name + "_kr", [])
+        kr = twins[0].read().image if twins else None
+        for obj in textures.get(name, []):
+            tex = obj.read()
+            try:
+                img = relabel(tex.image, spec, font, kr)
+            except ValueError as e:
+                failed.append("%s（%s）" % (name, e))
+                continue
+            tex.set_image(img)
+            tex.save()
+            done += 1
+        if name not in textures:
+            failed.append("%s（未找到）" % name)
+    log("  界面图片：重绘 %d 张%s" % (done, "；跳过：" + "、".join(failed) if failed else ""))
 
 
 def patch_font_asset(b, obj, tree, source_font, style):

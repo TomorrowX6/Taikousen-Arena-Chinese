@@ -21,6 +21,12 @@ jobs:
         run: >
           pyinstaller --noconfirm --onefile --name TaikousenArena-zh-patch
           --collect-all UnityPy
+          --collect-all fmod_toolkit
+          --collect-all archspec
+          --collect-all astc_encoder
+          --paths tools
+          --hidden-import ui_images
+          --hidden-import sentence_csv
           --add-data "translation;translation"
           --add-data "fonts;fonts"
           --add-data "tools;tools"

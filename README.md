@@ -13,7 +13,9 @@
 | 界面里的文字标签（设置项、确认框等 30 处） | ✅ |
 | 代码中的任务模板、部分错误提示（14 条） | ✅ |
 | 字体：Noto Sans CJK SC（思源黑体）Medium / Bold | ✅ |
-| 做成图片的按钮和标题（如「デッキ」「バトル」等） | ❌ 仍为日文 |
+| 做成图片的主要按钮和标题：底部导航、页面标题、对战模式按钮、回合阶段标识、压制度面板等（33 张） | ✅ |
+| 图集（sprite atlas）里的小按钮和窗口标题，如「コンフィグ」「カード鑑賞」「当番変更」、学校/社团标签 | ❌ 仍为日文 |
+| 标题画面 Logo、SUPPLY SHOP 等美术字 | ❌ 保留原样 |
 
 韩语模式不受影响，仍显示原版韩文。
 
@@ -51,7 +53,7 @@ python patch.py "游戏目录" --restore
 
 | 文件 | 修改内容 |
 | --- | --- |
-| `Taikousen Arena_Data/data.unity3d` | 替换翻译表 `BADCG_Translate - System/Card` 的日文栏；把 `NotoSansJP-Medium` 和 `851Gkktt_005` 两个字体换成思源黑体 SC；清空对应 TMP 字体资源的字形缓存（游戏运行时会按需生成中文字形）；替换 30 处界面文字 |
+| `Taikousen Arena_Data/data.unity3d` | 替换翻译表 `BADCG_Translate - System/Card` 的日文栏；把 `NotoSansJP-Medium` 和 `851Gkktt_005` 两个字体换成思源黑体 SC；清空对应 TMP 字体资源的字形缓存（游戏运行时会按需生成中文字形）；替换 30 处界面文字；在 33 张按钮/标题图片上擦除日文并重绘中文（在你的电脑上根据原图生成，仓库不含游戏图片） |
 | `GameAssembly.dll` | 修改 2 个字节。原版每次启动都会从官方服务器下载日文翻译表；修改后改为读取游戏内置的（已汉化）翻译表 |
 | `global-metadata.dat` | 替换 14 条写在代码里的文字（任务模板、提示信息） |
 
@@ -65,6 +67,8 @@ translation/system.zh.json       系统文本（键为游戏内 ID）
 translation/card.zh.json         卡牌文本
 translation/ui_strings.zh.json   界面文字（日文原文 → 中文）
 translation/code_strings.zh.json 代码中的文字（日文原文 → 中文）
+translation/images.zh.json       图片标签（贴图名 → 中文及擦除/排版参数）
+tools/ui_images.py               擦除图片上的日文并绘制中文
 fonts/                           思源黑体 SC 子集（SIL OFL 1.1）
 tools/sentence_csv.py            按游戏的方式解析 / 生成翻译表 CSV
 tools/typetrees/                 TMP_FontAsset 的序列化结构

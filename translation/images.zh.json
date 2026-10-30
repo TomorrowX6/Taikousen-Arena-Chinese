@@ -1,0 +1,48 @@
+{
+  "title_battle": {"text": "对战", "style": "title", "grow": 3},
+  "title_cpu": {"text": "CPU模式", "style": "title", "grow": 3},
+  "title_deck": {"text": "卡组", "style": "title", "grow": 3},
+  "title_deck_edit": {"text": "卡组编辑", "style": "title", "grow": 3},
+  "title_deck_preview": {"text": "卡组展示", "style": "title", "grow": 3},
+  "title_deck_select": {"text": "选择对战卡组", "style": "title", "grow": 3},
+  "title_free": {"text": "自由对战", "style": "title", "grow": 3},
+  "title_home": {"text": "主页", "style": "title", "grow": 3},
+  "title_other": {"text": "其他", "style": "title", "grow": 3},
+  "title_private": {"text": "私人对战", "style": "title", "grow": 3},
+  "title_profile": {"text": "个人资料", "style": "title", "grow": 3},
+
+  "home_btn_battle": {"text": "对战", "style": "nav", "mask": "nav", "threshold": 240, "text_box": [0, 0, 347, 122], "fill": "right"},
+  "home_btn_deck": {"text": "卡组", "style": "nav", "mask": "nav", "threshold": 240, "text_box": [0, 0, 347, 145], "fill": "right"},
+  "home_btn_home": {"text": "主页", "style": "nav", "mask": "nav", "threshold": 240, "text_box": [0, 0, 342, 142], "fill": "right"},
+  "home_btn_other": {"text": "其他", "style": "nav", "mask": "nav", "threshold": 240, "text_box": [0, 0, 338, 121], "fill": "right",
+                     "rings": [{"center": [88.75, 49], "r": [29.5, 39.5], "outline": 10, "color": [92, 221, 253, 255]}], "offset": [12, 0]},
+
+  "home_battle_free": {"text": "自由对战", "style": "panel", "mask": "bright", "threshold": 225, "text_box": [195, 85, 730, 210], "grow": 3},
+  "home_battle_private": {"text": "私人\n对战", "style": "panel", "mask": "bright", "threshold": 225, "text_box": [190, 55, 725, 255], "grow": 3},
+
+  "home_window_player": {"text": "玩家名：", "style": "label"},
+  "solo_window_cpu": {"text": "卡组检查", "style": "label", "mask": "plate", "threshold": 12, "text_box": [118, 22, 306, 60]},
+  "solo_window_solo": {"text": "卡组检查", "style": "label", "mask": "plate", "threshold": 12, "text_box": [118, 22, 306, 60]},
+
+  "battle_window_point_1p": {"text": "压制度", "style": "label"},
+  "battle_window_point_2p": {"text": "压制度", "style": "label"},
+
+  "battle_phase_1p_stby": {"text": "准备\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47]},
+  "battle_phase_1p_draw": {"text": "抽牌\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47]},
+  "battle_phase_1p_chrg": {"text": "充能\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47]},
+  "battle_phase_1p_main": {"text": "主要\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47]},
+  "battle_phase_1p_end": {"text": "结束\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47]},
+  "battle_phase_2p_stby": {"text": "准备\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47], "glow": [255, 80, 80, 255]},
+  "battle_phase_2p_draw": {"text": "抽牌\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47], "glow": [255, 80, 80, 255]},
+  "battle_phase_2p_chrg": {"text": "充能\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47], "glow": [255, 80, 80, 255]},
+  "battle_phase_2p_main": {"text": "主要\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47], "glow": [255, 80, 80, 255]},
+  "battle_phase_2p_end": {"text": "结束\n阶段", "style": "badge", "mask": "bright", "threshold": 190, "text_box": [12, 5, 72, 47], "glow": [255, 80, 80, 255]},
+
+  "battle_phase_window": {"style": "label", "items": [
+    {"text": "准备\n阶段", "fit_box": [100, 9, 158, 44]},
+    {"text": "抽牌\n阶段", "fit_box": [178, 9, 222, 44]},
+    {"text": "充能\n阶段", "fit_box": [250, 9, 296, 44]},
+    {"text": "主要\n阶段", "fit_box": [322, 9, 368, 44]},
+    {"text": "结束\n阶段", "fit_box": [394, 9, 440, 44]}
+  ]}
+}
